@@ -11,7 +11,7 @@ public interface Administrator {
 	String[] menu=new String[100]; // 반찬 각각 이름
 	List<MenuSelect> menulist=new ArrayList<>(); // 주문 내역이 들어갈 자리
 	
-	public void Logon(); // 관리자 로그온
+	public boolean Logon(); // 관리자 로그온
 	public void Logout(); // 관리자 로그아웃
 	
 	public void menuInput(); // 반찬 입력
