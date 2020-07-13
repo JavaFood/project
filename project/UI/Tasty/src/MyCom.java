@@ -7,75 +7,71 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+class MyCom extends Frame implements MouseListener{
+	MyCom(){
+		super("Tasty Co.");
+		this.setVisible(true);
+		this.setSize(400,600);
+		this.setLayout(new FlowLayout());
+		this.setBackground(Color.WHITE);
+		this.addWindowListener(new MyWinExit());
 
+		Color gren=new Color(26, 188, 156); //ë©”ì¸ ì»¬ëŸ¬
 
-public class MyCom {
-	public static void main(String[] args) {
+//===================í—¤ë”==================
 
-		Font basicFont=new Font(Font.SANS_SERIF,Font.PLAIN,12); //±ÛÀÚ ÆùÆ®
-		Frame frame=new Frame("Tasty Co.");
+		Panel MyComHeader=new Panel(); //í—¤ë” íŒ¨ë„ ìƒì„±
+		MyComHeader.setPreferredSize(new Dimension(600,40));//í—¤ë” ì‚¬ì´ì¦ˆ ì§€ì •
+		MyComHeader.setBackground(gren);//í—¤ë”ì— ë©”ì¸ì»¬ëŸ¬ ë¶™ì´ê¸°
 		
-		frame.setSize(400,600);
-		frame.setLayout(new FlowLayout());
-		frame.setBackground(Color.WHITE);
+		Label mycom=new Label("ë‚´ íšŒì‚¬");//í—¤ë” ë‚´ íšŒì‚¬ í°íŠ¸
+		Font font=new Font(Font.SANS_SERIF,Font.BOLD,18);//í—¤ë”í°íŠ¸
+		mycom.setForeground(Color.WHITE);//í°íŠ¸ ìƒ‰ìƒì§€ì •
+		mycom.setFont(font);//ê¸€ìì— í°íŠ¸ ë¶™ì´ê¸°
+		
+		MyComHeader.add("center",mycom); //íŒ¨ë„ì— ë¼ë²¨ ë¶™ì´ê¸°
+		this.add(MyComHeader);//í”„ë ˆì„ì— íŒ¨ë„ ë¶™ì´ê¸°
+
+//====================í—¤ë”================
+
+		Button select1=new Button("ì„ íƒ");
+		Button select2=new Button("ì„ íƒ");
+		Button select3=new Button("ì„ íƒ");
+		Button select4=new Button("ì„ íƒ");
+		Button select5=new Button("ì„ íƒ");//ì„ íƒë²„íŠ¼
+
+//		------------------------------------
 	
 		
-		Color gren=new Color(26, 188, 156); //¸ŞÀÎ ÄÃ·¯
-
-//===================Çì´õ==================
-
-		Panel MyComHeader=new Panel(); //Çì´õ ÆĞ³Î »ı¼º
-		MyComHeader.setPreferredSize(new Dimension(600,40));//Çì´õ »çÀÌÁî ÁöÁ¤
-		MyComHeader.setBackground(gren);//Çì´õ¿¡ ¸ŞÀÎÄÃ·¯ ºÙÀÌ±â
-		
-		Label mycom=new Label("³» È¸»ç");//Çì´õ ³» È¸»ç ÆùÆ®
-		Font font=new Font(Font.SANS_SERIF,Font.BOLD,18);//Çì´õÆùÆ®
-		mycom.setForeground(Color.WHITE);//ÆùÆ® »ö»óÁöÁ¤
-		mycom.setFont(font);//±ÛÀÚ¿¡ ÆùÆ® ºÙÀÌ±â
-		
-		MyComHeader.add("center",mycom); //ÆĞ³Î¿¡ ¶óº§ ºÙÀÌ±â
-		frame.add(MyComHeader);//ÇÁ·¹ÀÓ¿¡ ÆĞ³Î ºÙÀÌ±â
-
-//====================Çì´õ================
-
-		Button select1=new Button("¼±ÅÃ");
-		Button select2=new Button("¼±ÅÃ");
-		Button select3=new Button("¼±ÅÃ");
-		Button select4=new Button("¼±ÅÃ");
-		Button select5=new Button("¼±ÅÃ");//¼±ÅÃ¹öÆ°
-//		------------------------------------
-		Panel null1=new Panel();
-		null1.setBounds(2, 3, 600, 100);
-		//null1.setPreferredSize(new Dimension(600,100));
-		null1.setBackground(Color.WHITE);
-		
-//---------------È¸»ç¸®½ºÆ®-----------
+//---------------íšŒì‚¬ë¦¬ìŠ¤íŠ¸-----------
 		Panel List=new Panel();
 		List.setLayout(new GridLayout(0,4));
 		
 		
 		Label Number=new Label("No.");
-			Label company=new Label("È¸»ç ÀÌ¸§");
-			Label ticketCost=new Label("½Ä±Ç °¡°İ");
-			Label select=new Label("¼±ÅÃ");
+			Label company=new Label("íšŒì‚¬ ì´ë¦„");
+			Label ticketCost=new Label("ì‹ê¶Œ ê°€ê²©");
+			Label select=new Label("ì„ íƒ");
 		Font listT=new Font(Font.SANS_SERIF,Font.BOLD,15);
 		Number.setFont(listT);
 		company.setFont(listT);
 		ticketCost.setFont(listT);
 		select.setFont(listT);
 		
-//		--------°´Ã¼»ı¼º-----------		
+//		--------ê°ì²´ìƒì„±-----------		
 		List.add(Number,"Center");
 		List.add(company,"Center");		
 		List.add(ticketCost,"Center");
 		List.add(select,"Right");
 		
 		Label Company1=new Label("Tasty Co,");
-		Label Company2=new Label("(ÁÖ)ÁÖ½Ä");
-		Label Company3=new Label("(ÁÖ)¹°»ê");
+		Label Company2=new Label("(ì£¼)ì£¼ì‹");
+		Label Company3=new Label("(ì£¼)ë¬¼ì‚°");
 		Label Company4=new Label("Costca");
 		Label Company5=new Label("Riotgamas");
 		
@@ -88,7 +84,7 @@ public class MyCom {
 		Label Num1=new Label("1");Label Num2=new Label("2"); Label Num3=new Label("3");
 		Label Num4=new Label("4");Label Num5=new Label("5");
 
-//		-----------List¿¡ °´Ã¼³Ö±â-----------
+//		-----------Listì— ê°ì²´ë„£ê¸°-----------
 		List.add(Num1,"Center");List.add(Company1,"Center");
 		List.add(Cost1,"Center"); List.add(select1,"Center");
 		
@@ -103,22 +99,55 @@ public class MyCom {
 		
 		List.add(Num5,"Center");List.add(Company5,"Center");
 		List.add(Cost5,"Center"); List.add(select5,"Center");
-//		-------ÇÁ·¹ÀÓ¿¡ List³Ö±â------	
+//		-------í”„ë ˆì„ì— Listë„£ê¸°------	
 
-		frame.add(List);
+		this.add(List);
 		
-//-----------------------´İ±â------------
-		frame.setVisible(true);
-		frame.addWindowListener(new WindowAdapter() {
-
-			@Override
-			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
-				System.exit(0);
-			}
-			
-		});
+		this.setVisible(true);
 		
+	
+	select1.addMouseListener(this);
+	select2.addMouseListener(this);
+	select3.addMouseListener(this);
+	select4.addMouseListener(this);
+	select5.addMouseListener(this);
+	}//MyCom()ì¢…ë£Œ
+	
+//í”„ë ˆì„ ì „í™˜ í´ë˜ìŠ¤
+	
+	 public void mouseClicked(MouseEvent e) {      
+	        new Meal();
+	 }
+	
+ // ìœˆë„ìš° ì¢…ë£Œ í´ë˜ìŠ¤ MyWinExit
+	 public class MyWinExit extends WindowAdapter {
+	        public void windowClosing(WindowEvent we) {
+	        	dispose();//ë‚´ê°€ ë³´ê³  ìˆëŠ” ì°½ë§Œ ë‹«ìŒ
+	        	
+			// System.exit(0); // JVMì „ì²´ ì¢…ë£Œì‹œí‚´
+	        }
+	 }
+/* í”„ë ˆì„ ì „í™˜ í´ë˜ìŠ¤
+	 public void mouseClicked(MouseEvent e) {        
+	        new Meal();
+	 }*/
+	 
+//ë©”ì¸
+	 public static void main(String[] args) {
+		new MyCom();
 	}
+	
 
-}
+//----------------êµ¬í˜„ì•ˆí•¨------------------
+	 
+	@Override
+	public void mousePressed(MouseEvent e) {}
+	@Override
+	public void mouseReleased(MouseEvent e) {}
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+	@Override
+	public void mouseExited(MouseEvent e) {}
+	
+	
+}//class MyCom extends Frame implements MouseListener ì¢…ë£Œ
