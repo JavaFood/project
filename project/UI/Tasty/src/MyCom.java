@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,8 +13,13 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
 class MyCom extends Frame implements MouseListener{
-	MyCom(){
+	final static String a="내 회사";
+	
+	MyCom(){	
 		super("Tasty Co.");
 		this.setVisible(true);
 		this.setSize(400,600);
@@ -29,13 +35,34 @@ class MyCom extends Frame implements MouseListener{
 		MyComHeader.setPreferredSize(new Dimension(600,40));//헤더 사이즈 지정
 		MyComHeader.setBackground(gren);//헤더에 메인컬러 붙이기
 		
-		Label mycom=new Label("내 회사");//헤더 내 회사 폰트
+		//헤더뒤로가기
+		JLabel back = new JLabel("\u25C0      ");
+		MyComHeader.add(back, BorderLayout.WEST);
+		back.addMouseListener(new MouseListener() {
+			public void mouseClicked(MouseEvent e) {
+				Frame mycom=new MyCom(); //★★★★★
+				mycom.setVisible(true);  // 홈으로 가게 수정
+		        setVisible(false);		 //
+		
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}			
+			
+		});
+		
+		Label mycom=new Label(a);//헤더 내 회사 폰트
 		Font font=new Font(Font.SANS_SERIF,Font.BOLD,18);//헤더폰트
 		mycom.setForeground(Color.WHITE);//폰트 색상지정
 		mycom.setFont(font);//글자에 폰트 붙이기
 		
 		MyComHeader.add("center",mycom); //패널에 라벨 붙이기
 		this.add(MyComHeader);//프레임에 패널 붙이기
+		
+		
+		
 
 //====================헤더================
 
@@ -111,24 +138,25 @@ class MyCom extends Frame implements MouseListener{
 	select3.addMouseListener(this);
 	select4.addMouseListener(this);
 	select5.addMouseListener(this);
-	}//MyCom()종료
-	
-//프레임 전환 클래스
-	
+	}
+	//프레임 전환 클래스
 	 public void mouseClicked(MouseEvent e) {      
-	        new Meal();
+	       // new Proj();
+	        JFrame tabletest=new TableTest();
+	        tabletest.setVisible(true);
+	        setVisible(false);
 	 }
-	
  // 윈도우 종료 클래스 MyWinExit
-	 public class MyWinExit extends WindowAdapter {
+	public class MyWinExit extends WindowAdapter {
 	        public void windowClosing(WindowEvent we) {
 	        	dispose();//내가 보고 있는 창만 닫음
-	        	
-			// System.exit(0); // JVM전체 종료시킴
+	        	//System.exit(0); //JVM전체 종료시킴
 	        }
+	        
+	 
 	 }
-/* 프레임 전환 클래스
-	 public void mouseClicked(MouseEvent e) {        
+ //프레임 전환 클래스
+	/* public void mouseClicked(MouseEvent e) {        
 	        new Meal();
 	 }*/
 	 
@@ -148,6 +176,7 @@ class MyCom extends Frame implements MouseListener{
 	public void mouseEntered(MouseEvent e) {}
 	@Override
 	public void mouseExited(MouseEvent e) {}
+	//public void mouseClicked(MouseEvent e) {}
 	
 	
 }//class MyCom extends Frame implements MouseListener 종료
