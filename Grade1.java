@@ -19,7 +19,7 @@ public class Grade1 extends JFrame {
 	private JTable table_1;
 	private JTextField TextInput;
 	private JTextField NameT;
-	private JTextField NumberT;
+//	private JTextField NumberT;
 //	private JComboBox CnameT;
 
 	/**
@@ -142,6 +142,15 @@ public class Grade1 extends JFrame {
 		CnameT.setBounds(24, 365, 101, 46);
 		contentPane.add(CnameT);
 
+		JComboBox NumberT = new JComboBox();
+		NumberT.setBackground(Color.WHITE);
+		NumberT.setForeground(Color.BLACK);
+		NumberT.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		NumberT.setModel(
+				new DefaultComboBoxModel(new String[] { "0.0","0.5","1.0","1.5","2.0","2.5","3.0","3.5","4.0","4.5","5.0"}));
+		NumberT.setBounds(134, 365, 101, 46);
+		contentPane.add(NumberT);
+		
 		NameT = new JTextField();
 		NameT.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 		NameT.setHorizontalAlignment(SwingConstants.CENTER);
@@ -150,13 +159,7 @@ public class Grade1 extends JFrame {
 		contentPane.add(NameT);
 		NameT.setColumns(10);
 
-		NumberT = new JTextField();
-		NumberT.setText("\uD3C9\uC810");
-		NumberT.setHorizontalAlignment(SwingConstants.CENTER);
-		NumberT.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
-		NumberT.setColumns(10);
-		NumberT.setBounds(134, 365, 101, 46);
-		contentPane.add(NumberT);
+		
 
 		TextInput = new JTextField();
 		TextInput.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
@@ -171,7 +174,7 @@ public class Grade1 extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.addRow(
-						new Object[] { CnameT.getSelectedItem().toString(), TextInput.getText(), NameT.getText(), NumberT.getText() });
+						new Object[] { CnameT.getSelectedItem().toString(), TextInput.getText(), NameT.getText(), NumberT.getSelectedItem().toString() });
 			}
 		});
 		btnNewButton.setBounds(276, 157, 74, 29);
