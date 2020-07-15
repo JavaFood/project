@@ -92,25 +92,25 @@ public class Grade1 extends JFrame implements MouseListener {
 		//setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel Home = new JLabel("È¸»çÀÌ¸§ / Æò±Õ ÆòÁ¡");
+		JLabel Home = new JLabel("íšŒì‚¬ì´ë¦„ / í‰ê·  í‰ì ");
 		Home.setBounds(24, 77, 250, 65);
-		Home.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 21));
+		Home.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 21));
 		contentPane.add(Home);
 
-		JLabel lblNewLabel = new JLabel("ÆòÁ¡ & ÈÄ±â");
+		JLabel lblNewLabel = new JLabel("í‰ì  & í›„ê¸°");
 		lblNewLabel.setBounds(125, 12, 139, 34);
 		contentPane.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 25));
+		lblNewLabel.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 25));
 		lblNewLabel.setForeground(Color.WHITE);
 
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(24, 142, 111, 44);
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setForeground(Color.BLACK);
-		comboBox.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		comboBox.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 15));
 		comboBox.setModel(
-				new DefaultComboBoxModel(new String[] { "È¸»çº°º¸±â", "Tasty", "ÁÖ½Ä", "¹°»ê", "Costca", "Riotgames" }));
+				new DefaultComboBoxModel(new String[] { "íšŒì‚¬ë³„ë³´ê¸°", "Tasty", "ì£¼ì‹", "ë¬¼ì‚°", "Costca", "Riotgames" }));
 		contentPane.add(comboBox);
 
 		JComboBox comboBox_1 = new JComboBox();
@@ -120,7 +120,7 @@ public class Grade1 extends JFrame implements MouseListener {
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "\uBCF4\uAE30 \uC21C\uC11C",
 				"\uB192\uC740 \uD3C9\uC810 \uC21C", "\uB0AE\uC740 \uD3C9\uC810 \uC21C" }));
 		comboBox_1.setForeground(Color.BLACK);
-		comboBox_1.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		comboBox_1.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 15));
 		comboBox_1.setBackground(Color.WHITE);
 		contentPane.add(comboBox_1);
 		
@@ -130,7 +130,7 @@ public class Grade1 extends JFrame implements MouseListener {
 
 		
 		
-		DefaultTableModel dtm=new DefaultTableModel(new String[] {"È¸»çÀÌ¸§","ÈÄ±â","ÀÛ¼ºÀÚ","ÆòÁ¡"},0);
+		DefaultTableModel dtm=new DefaultTableModel(new String[] {"íšŒì‚¬ì´ë¦„","í›„ê¸°","ì‘ì„±ì","í‰ì "},0);
 		JTable table=new JTable(dtm);
 		
 		File file=new File("grade.txt");
@@ -145,7 +145,7 @@ public class Grade1 extends JFrame implements MouseListener {
 		scp.setBounds(24, 198, 326, 155);
 		contentPane.add(scp);
 		
-		// Ç¥ À§¿¡¼­ ¸¶¿ì½º¸¦ Å¬¸¯ÇÒ ½Ã »õ·Î¿î ÇÁ·¹ÀÓ Ã¢À» »ı¼º
+		// í‘œ ìœ„ì—ì„œ ë§ˆìš°ìŠ¤ë¥¼ í´ë¦­í•  ì‹œ ìƒˆë¡œìš´ í”„ë ˆì„ ì°½ì„ ìƒì„±
 		table.addMouseListener(new MouseAdapter() {
 			
 			@Override
@@ -171,13 +171,13 @@ public class Grade1 extends JFrame implements MouseListener {
 				popup.setBounds(0, 0, 400, 400);
 				JLabel showcompany=new JLabel(companyName);
 				showcompany.setHorizontalAlignment(SwingConstants.CENTER);
-				showcompany.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 21));
+				showcompany.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 21));
 				JLabel showgrade=new JLabel(grade);
-				showgrade.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+				showgrade.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 13));
 				JLabel showcreator=new JLabel(creator);
-				showcreator.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 21));
+				showcreator.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 21));
 				JLabel showscore=new JLabel(score);
-				showscore.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 21));
+				showscore.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 21));
 //				showcompany.setEnabled(false);
 //				showgrade.setEnabled(false);
 //				showcreator.setEnabled(false);
@@ -192,7 +192,7 @@ public class Grade1 extends JFrame implements MouseListener {
 //				showscore.setBounds(20, 360, 30, 100);
 				popup.add(showscore,BorderLayout.WEST);
 				popup.add(showgrade,BorderLayout.CENTER);
-				JButton bt=new JButton("´İ±â");
+				JButton bt=new JButton("ë‹«ê¸°");
 				bt.addActionListener(new ActionListener() {
 					
 					@Override
@@ -229,7 +229,7 @@ public class Grade1 extends JFrame implements MouseListener {
 		
 //		
 //		table_1 = new JTable(dtm);
-//		table_1.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
+//		table_1.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 13));
 //		JScrollPane scrollPane = new JScrollPane(table_1,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 ////		JScrollPane scrollPane=new JScrollPane();
 //		scrollPane.setBounds(24, 198, 326, 155);
@@ -241,7 +241,7 @@ public class Grade1 extends JFrame implements MouseListener {
 //		table_1.setPreferredSize(new Dimension(300,155));
 //		table_1.setModel(new DefaultTableModel(
 //			new Object[][] {
-//				{"   È¸»çÀÌ¸§", "     ÈÄ±â", "    ÀÛ¼ºÀÚ", "     ÆòÁ¡"},
+//				{"   íšŒì‚¬ì´ë¦„", "     í›„ê¸°", "    ì‘ì„±ì", "     í‰ì "},
 //			},
 //			new String[] {
 //				"Cname", "Text", "Name", "Number"
@@ -261,7 +261,7 @@ public class Grade1 extends JFrame implements MouseListener {
 //		comboBox_2.setModel(new DefaultComboBoxModel(new String[] { "\uBCF4\uAE30 \uC21C\uC11C",
 //				"\uB192\uC740 \uD3C9\uC810 \uC21C", "\uB0AE\uC740 \uD3C9\uC810 \uC21C" }));
 //		comboBox_2.setForeground(Color.BLACK);
-//		comboBox_2.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+//		comboBox_2.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 15));
 //		comboBox_2.setBackground(Color.WHITE);
 //		contentPane.add(comboBox_2);
 
@@ -269,23 +269,23 @@ public class Grade1 extends JFrame implements MouseListener {
 		JComboBox CnameT = new JComboBox();
 		CnameT.setBackground(Color.WHITE);
 		CnameT.setForeground(Color.BLACK);
-		CnameT.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		CnameT.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 15));
 		CnameT.setModel(
-				new DefaultComboBoxModel(new String[] { "", "Tasty", "ÁÖ½Ä", "¹°»ê", "Costca", "Riotgames" }));
+				new DefaultComboBoxModel(new String[] { "", "Tasty", "ì£¼ì‹", "ë¬¼ì‚°", "Costca", "Riotgames" }));
 		CnameT.setBounds(24, 365, 101, 46);
 		contentPane.add(CnameT);
 
 		JComboBox NumberT = new JComboBox();
 		NumberT.setBackground(Color.WHITE);
 		NumberT.setForeground(Color.BLACK);
-		NumberT.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		NumberT.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 15));
 		NumberT.setModel(
 				new DefaultComboBoxModel(new String[] { "0.0","0.5","1.0","1.5","2.0","2.5","3.0","3.5","4.0","4.5","5.0"}));
 		NumberT.setBounds(134, 365, 101, 46);
 		contentPane.add(NumberT);
 		
 		NameT = new JTextField();
-		NameT.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		NameT.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 15));
 		NameT.setHorizontalAlignment(SwingConstants.CENTER);
 		NameT.setText("\uC791\uC131\uC790");
 		NameT.setBounds(249, 365, 101, 46);
@@ -295,31 +295,31 @@ public class Grade1 extends JFrame implements MouseListener {
 		
 
 		TextInput = new JTextField();
-		TextInput.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		TextInput.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 15));
 		TextInput.setHorizontalAlignment(SwingConstants.CENTER);
 		TextInput.setText("\uD6C4\uAE30\uB97C \uC785\uB825\uD558\uC138\uC694");
 		TextInput.setBounds(24, 421, 326, 101);
 		contentPane.add(TextInput);
 		TextInput.setColumns(10);
-
-		JButton btnNewButton = new JButton("ÀÛ¼º");
+// ì‘ì„± ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ì…ë ¥í•œ ì½”ë©˜íŠ¸ ë“±ì„ íŒŒì¼ì— ì¶”ê°€í•˜ì—¬ ê¸°ë¡
+		JButton btnNewButton = new JButton("ì‘ì„±");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(NameT.getText().equals("ÀÛ¼ºÀÚ")&&TextInput.getText().equals("ÈÄ±â¸¦ ÀÔ·ÂÇÏ¼¼¿ä")) {
-					JOptionPane.showMessageDialog(null, "ÀÔ·Â°ªÀ» È®ÀÎÇÏ¼¼¿ä.");
+				if(NameT.getText().equals("ì‘ì„±ì")&&TextInput.getText().equals("í›„ê¸°ë¥¼ ì…ë ¥í•˜ì„¸ìš”")) {
+					JOptionPane.showMessageDialog(null, "ì…ë ¥ê°’ì„ í™•ì¸í•˜ì„¸ìš”.");
 					return ;
 					}
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.addRow(
 						new Object[] { CnameT.getSelectedItem().toString(), TextInput.getText(), NameT.getText(), NumberT.getSelectedItem().toString() });
-				NameT.setText("ÀÛ¼ºÀÚ");
-				TextInput.setText("ÈÄ±â¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+				NameT.setText("ì‘ì„±ì");
+				TextInput.setText("í›„ê¸°ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 				
 				File f=new File("grade.txt");
 				try {
 					FileWriter fw=new FileWriter(f,true);
 					BufferedWriter bw=new BufferedWriter(fw);
-					bw.write(gradeNumber+"\t"+CnameT.getSelectedItem().toString()+"\t"+TextInput.getText()+"\t"+NameT.getText()+"\t"+NumberT.getSelectedItem().toString());
+					bw.write(gradeNumber+"\t"+CnameT.getSelectedItem().toString()+"\t"+TextInput.getText()+"\t"+NameT.getText()+"\t"+NumberT.getSelectedItem().toString()+"\n");
 					bw.close();
 					fw.close();
 					
@@ -333,13 +333,13 @@ public class Grade1 extends JFrame implements MouseListener {
 		});
 		btnNewButton.setBounds(276, 157, 74, 29);
 		btnNewButton.setBackground(new Color(230, 230, 250));
-		btnNewButton.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		btnNewButton.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 15));
 		contentPane.add(btnNewButton);
 
 		JButton HomeBack = new JButton("New button");
-		HomeBack.setIcon(new ImageIcon("Áı1.PNG"));
+		HomeBack.setIcon(new ImageIcon("ì§‘1.PNG"));
 		HomeBack.setBounds(325, 13, 43, 44);
-		HomeBack.setPressedIcon(new ImageIcon("Áı2.PNG"));
+		HomeBack.setPressedIcon(new ImageIcon("ì§‘2.PNG"));
 		contentPane.add(HomeBack);
 		HomeBack.addActionListener(new ActionListener() {
 
@@ -352,9 +352,9 @@ public class Grade1 extends JFrame implements MouseListener {
 		});
 
 		JButton Back = new JButton("New button");
-		Back.setIcon(new ImageIcon("È­»ìÇ¥1.png"));
+		Back.setIcon(new ImageIcon("í™”ì‚´í‘œ1.png"));
 		Back.setBounds(24, 22, 43, 27);
-		Back.setPressedIcon(new ImageIcon("È­»ìÇ¥2.PNG"));
+		Back.setPressedIcon(new ImageIcon("í™”ì‚´í‘œ2.PNG"));
 		contentPane.add(Back);
 
 		JPanel panel = new JPanel();
