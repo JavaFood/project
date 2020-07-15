@@ -1,26 +1,68 @@
 package UI;
 import java.awt.*;
+import java.awt.JobAttributes.DefaultSelectionType;
 
+import javax.print.attribute.standard.JobName;
 import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
 
 import java.util.Scanner;
 
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.peer.ScrollPanePeer;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
-public class Grade1 extends JFrame {
-
+public class Grade1 extends JFrame implements MouseListener {
+	
 	//private JPanel contentPane;
 	private JTable table;
 	private JTable table_1;
 	private JTextField TextInput;
 	private JTextField NameT;
+	private static int gradeNumber=0;
 //	private JTextField NumberT;
 //	private JComboBox CnameT;
-
+	public class sendGrade {
+		String companyname;
+		String grade;
+		String creator;
+		String score;
+		
+		sendGrade(String c, String g, String r, String s) {
+			companyname=c;
+			grade=g;
+			creator=r;
+			score=s;
+		}
+	}
+	public class MsgAppender  {
+		
+		private String string;
+		
+		public String getString() {
+			return string;
+		}
+		public String setString(String string) {
+			this.string=string;
+			return this.string;
+		}
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -39,8 +81,9 @@ public class Grade1 extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws FileNotFoundException 
 	 */
-	public Grade1() {
+	public Grade1() throws FileNotFoundException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 600);
 		Container contentPane =getContentPane();
@@ -49,25 +92,25 @@ public class Grade1 extends JFrame {
 		//setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel Home = new JLabel("ÌöåÏÇ¨Ïù¥Î¶Ñ / ÌèâÍ∑† ÌèâÏ†ê");
+		JLabel Home = new JLabel("»∏ªÁ¿Ã∏ß / ∆Ú±’ ∆Ú¡°");
 		Home.setBounds(24, 77, 250, 65);
-		Home.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 21));
+		Home.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 21));
 		contentPane.add(Home);
 
-		JLabel lblNewLabel = new JLabel("ÌèâÏ†ê & ÌõÑÍ∏∞");
+		JLabel lblNewLabel = new JLabel("∆Ú¡° & »ƒ±‚");
 		lblNewLabel.setBounds(125, 12, 139, 34);
 		contentPane.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 25));
+		lblNewLabel.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 25));
 		lblNewLabel.setForeground(Color.WHITE);
 
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(24, 142, 111, 44);
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setForeground(Color.BLACK);
-		comboBox.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 15));
+		comboBox.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15));
 		comboBox.setModel(
-				new DefaultComboBoxModel(new String[] { "ÌöåÏÇ¨Î≥ÑÎ≥¥Í∏∞", "Tasty", "Ï£ºÏãù", "Î¨ºÏÇ∞", "Costca", "Riotgames" }));
+				new DefaultComboBoxModel(new String[] { "»∏ªÁ∫∞∫∏±‚", "Tasty", "¡÷Ωƒ", "π∞ªÍ", "Costca", "Riotgames" }));
 		contentPane.add(comboBox);
 
 		JComboBox comboBox_1 = new JComboBox();
@@ -77,25 +120,116 @@ public class Grade1 extends JFrame {
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "\uBCF4\uAE30 \uC21C\uC11C",
 				"\uB192\uC740 \uD3C9\uC810 \uC21C", "\uB0AE\uC740 \uD3C9\uC810 \uC21C" }));
 		comboBox_1.setForeground(Color.BLACK);
-		comboBox_1.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 15));
+		comboBox_1.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15));
 		comboBox_1.setBackground(Color.WHITE);
 		contentPane.add(comboBox_1);
 		
 		//JPanel TablePanel=new JPanel();
 		//TablePanel.setBounds(24,198,326,155);
 		
-		DefaultTableModel dtm=new DefaultTableModel(new String[] {"ÌöåÏÇ¨Ïù¥Î¶Ñ","ÌõÑÍ∏∞","ÏûëÏÑ±Ïûê","ÌèâÏ†ê"},0);
-		JTable table=new JTable(dtm);
-		table.setBounds(0,0,300,200);
 
+		
+		
+		DefaultTableModel dtm=new DefaultTableModel(new String[] {"»∏ªÁ¿Ã∏ß","»ƒ±‚","¿€º∫¿⁄","∆Ú¡°"},0);
+		JTable table=new JTable(dtm);
+		
+		File file=new File("grade.txt");
+		FileReader fr=new FileReader(file);
+		BufferedReader br=new BufferedReader(fr);
+		
+		table.setBounds(0,0,300,200);
+		
 		table.setEnabled(false);
 		table.getTableHeader().setEnabled(false);
 		JScrollPane scp=new JScrollPane(table);
 		scp.setBounds(24, 198, 326, 155);
 		contentPane.add(scp);
+		
+		// «• ¿ßø°º≠ ∏∂øÏΩ∫∏¶ ≈¨∏Ø«“ Ω√ ªı∑ŒøÓ «¡∑π¿” √¢¿ª ª˝º∫
+		table.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int row=table.rowAtPoint(e.getPoint());
+				
+				
+				TableModel tm=table.getModel();
+				
+				
+				String companyName=(String)tm.getValueAt(row, 0);
+				String grade=(String)tm.getValueAt(row,1);
+				String creator=(String)tm.getValueAt(row, 2);
+				String score=(String)tm.getValueAt(row, 3);
+				
+				Frame popup=new Frame();
+				popup.setLayout(new BorderLayout());
+//				popup.setEnabled(false);
+//				Container pc=getContentPane();
+//				popup.add(pc);
+				popup.setVisible(true);
+				popup.setBounds(0, 0, 400, 400);
+				JLabel showcompany=new JLabel(companyName);
+				showcompany.setHorizontalAlignment(SwingConstants.CENTER);
+				showcompany.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 21));
+				JLabel showgrade=new JLabel(grade);
+				showgrade.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 13));
+				JLabel showcreator=new JLabel(creator);
+				showcreator.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 21));
+				JLabel showscore=new JLabel(score);
+				showscore.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 21));
+//				showcompany.setEnabled(false);
+//				showgrade.setEnabled(false);
+//				showcreator.setEnabled(false);
+//				showscore.setEnabled(false);
+//				showcompany.setBounds(20, 0, 30, 30);
+				showcompany.setSize(100, 100);
+				popup.add(showcompany,BorderLayout.NORTH);
+//				showgrade.setBounds(20, 120, 30, 100);
+				
+//				showcreator.setBounds(20, 240, 30, 100);
+				popup.add(showcreator,BorderLayout.EAST);
+//				showscore.setBounds(20, 360, 30, 100);
+				popup.add(showscore,BorderLayout.WEST);
+				popup.add(showgrade,BorderLayout.CENTER);
+				JButton bt=new JButton("¥›±‚");
+				bt.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						popup.dispose();
+						
+					}
+				});
+				popup.add(bt,BorderLayout.SOUTH);
+				popup.addWindowListener(new WindowAdapter() {
+
+					@Override
+					public void windowClosing(WindowEvent e) {
+						// TODO Auto-generated method stub
+						popup.dispose();
+					}
+					
+				});
+				
+
+//				try {
+//					JFrame jf=new gettext();
+//					jf.setVisible(true);
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+				
+				
+				
+			}
+			
+		});
+		
 //		
 //		table_1 = new JTable(dtm);
-//		table_1.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 13));
+//		table_1.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 13));
 //		JScrollPane scrollPane = new JScrollPane(table_1,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 ////		JScrollPane scrollPane=new JScrollPane();
 //		scrollPane.setBounds(24, 198, 326, 155);
@@ -107,7 +241,7 @@ public class Grade1 extends JFrame {
 //		table_1.setPreferredSize(new Dimension(300,155));
 //		table_1.setModel(new DefaultTableModel(
 //			new Object[][] {
-//				{"   ÌöåÏÇ¨Ïù¥Î¶Ñ", "     ÌõÑÍ∏∞", "    ÏûëÏÑ±Ïûê", "     ÌèâÏ†ê"},
+//				{"   »∏ªÁ¿Ã∏ß", "     »ƒ±‚", "    ¿€º∫¿⁄", "     ∆Ú¡°"},
 //			},
 //			new String[] {
 //				"Cname", "Text", "Name", "Number"
@@ -127,7 +261,7 @@ public class Grade1 extends JFrame {
 //		comboBox_2.setModel(new DefaultComboBoxModel(new String[] { "\uBCF4\uAE30 \uC21C\uC11C",
 //				"\uB192\uC740 \uD3C9\uC810 \uC21C", "\uB0AE\uC740 \uD3C9\uC810 \uC21C" }));
 //		comboBox_2.setForeground(Color.BLACK);
-//		comboBox_2.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 15));
+//		comboBox_2.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15));
 //		comboBox_2.setBackground(Color.WHITE);
 //		contentPane.add(comboBox_2);
 
@@ -135,23 +269,23 @@ public class Grade1 extends JFrame {
 		JComboBox CnameT = new JComboBox();
 		CnameT.setBackground(Color.WHITE);
 		CnameT.setForeground(Color.BLACK);
-		CnameT.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 15));
+		CnameT.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15));
 		CnameT.setModel(
-				new DefaultComboBoxModel(new String[] { "", "Tasty", "Ï£ºÏãù", "Î¨ºÏÇ∞", "Costca", "Riotgames" }));
+				new DefaultComboBoxModel(new String[] { "", "Tasty", "¡÷Ωƒ", "π∞ªÍ", "Costca", "Riotgames" }));
 		CnameT.setBounds(24, 365, 101, 46);
 		contentPane.add(CnameT);
 
 		JComboBox NumberT = new JComboBox();
 		NumberT.setBackground(Color.WHITE);
 		NumberT.setForeground(Color.BLACK);
-		NumberT.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 15));
+		NumberT.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15));
 		NumberT.setModel(
 				new DefaultComboBoxModel(new String[] { "0.0","0.5","1.0","1.5","2.0","2.5","3.0","3.5","4.0","4.5","5.0"}));
 		NumberT.setBounds(134, 365, 101, 46);
 		contentPane.add(NumberT);
 		
 		NameT = new JTextField();
-		NameT.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 15));
+		NameT.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15));
 		NameT.setHorizontalAlignment(SwingConstants.CENTER);
 		NameT.setText("\uC791\uC131\uC790");
 		NameT.setBounds(249, 365, 101, 46);
@@ -161,72 +295,103 @@ public class Grade1 extends JFrame {
 		
 
 		TextInput = new JTextField();
-		TextInput.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 15));
+		TextInput.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15));
 		TextInput.setHorizontalAlignment(SwingConstants.CENTER);
 		TextInput.setText("\uD6C4\uAE30\uB97C \uC785\uB825\uD558\uC138\uC694");
 		TextInput.setBounds(24, 421, 326, 101);
 		contentPane.add(TextInput);
 		TextInput.setColumns(10);
 
-		JButton btnNewButton = new JButton("ÏûëÏÑ±");
+		JButton btnNewButton = new JButton("¿€º∫");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(NameT.getText().equals("ÏûëÏÑ±Ïûê")&&TextInput.getText().equals("ÌõÑÍ∏∞Î•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî")) {
-					JOptionPane.showMessageDialog(null, "ÏûÖÎ†•Í∞íÏùÑ ÌôïÏù∏ÌïòÏÑ∏Ïöî.");
+				if(NameT.getText().equals("¿€º∫¿⁄")&&TextInput.getText().equals("»ƒ±‚∏¶ ¿‘∑¬«œººø‰")) {
+					JOptionPane.showMessageDialog(null, "¿‘∑¬∞™¿ª »Æ¿Œ«œººø‰.");
 					return ;
 					}
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.addRow(
 						new Object[] { CnameT.getSelectedItem().toString(), TextInput.getText(), NameT.getText(), NumberT.getSelectedItem().toString() });
-				NameT.setText("ÏûëÏÑ±Ïûê");
-				TextInput.setText("ÌõÑÍ∏∞Î•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî");
+				NameT.setText("¿€º∫¿⁄");
+				TextInput.setText("»ƒ±‚∏¶ ¿‘∑¬«œººø‰");
+				
+				File f=new File("grade.txt");
+				try {
+					FileWriter fw=new FileWriter(f,true);
+					BufferedWriter bw=new BufferedWriter(fw);
+					bw.write(gradeNumber+"\t"+CnameT.getSelectedItem().toString()+"\t"+TextInput.getText()+"\t"+NameT.getText()+"\t"+NumberT.getSelectedItem().toString());
+					bw.close();
+					fw.close();
+					
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 		});
 		btnNewButton.setBounds(276, 157, 74, 29);
 		btnNewButton.setBackground(new Color(230, 230, 250));
-		btnNewButton.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 15));
+		btnNewButton.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15));
 		contentPane.add(btnNewButton);
 
-		
-//‚òÖ‚òÖ‚òÖ‚òÖ‚òÖ‚òÖ
 		JButton HomeBack = new JButton("New button");
-		HomeBack.setIcon(new ImageIcon("Ïßë1.PNG"));
+		HomeBack.setIcon(new ImageIcon("¡˝1.PNG"));
 		HomeBack.setBounds(325, 13, 43, 44);
-		HomeBack.setPressedIcon(new ImageIcon("Ïßë2.PNG"));
+		HomeBack.setPressedIcon(new ImageIcon("¡˝2.PNG"));
 		contentPane.add(HomeBack);
 		HomeBack.addActionListener(new ActionListener() {
-//
+
 			@Override
-			
 			public void actionPerformed(ActionEvent e) {
 				new Home();
-				setVisible(false);
+				contentPane.setVisible(false);
 
 			}
 		});
 
 		JButton Back = new JButton("New button");
-		Back.setIcon(new ImageIcon("ÌôîÏÇ¥Ìëú1.png"));
+		Back.setIcon(new ImageIcon("»≠ªÏ«•1.png"));
 		Back.setBounds(24, 22, 43, 27);
-		Back.setPressedIcon(new ImageIcon("ÌôîÏÇ¥Ìëú2.PNG"));
+		Back.setPressedIcon(new ImageIcon("»≠ªÏ«•2.PNG"));
 		contentPane.add(Back);
-//		
-		Back.addActionListener(new ActionListener() {
-		//
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			JFrame custmain=new CustMain();
-			custmain.setVisible(true);
-			setVisible(false);
 
-		}
-	});
-		
-		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 382, 65);
 		panel.setBackground(new Color(26, 188, 156));
 		contentPane.add(panel);
 
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
