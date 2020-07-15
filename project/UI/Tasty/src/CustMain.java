@@ -1,3 +1,5 @@
+package UI;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -37,7 +40,7 @@ public class CustMain extends JFrame {
 		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		
 		
-//------	Ìó§Îçî
+//------	«Ï¥ı
 		JPanel HEAD = new JPanel();
 		HEAD.setPreferredSize(new Dimension(380, 40));
 		HEAD.setBackground(new Color(26, 188, 156));
@@ -53,10 +56,10 @@ public class CustMain extends JFrame {
 		Header.setForeground(Color.WHITE);
 		Header.setBounds(147,0,100,40);
 		HEAD.add(Header);
-//Îí§Î°úÍ∞ÄÍ∏∞	    
+//µ⁄∑Œ∞°±‚	    
 	    
 		
-//----Ìå®ÎÑê1
+//----∆–≥Œ1
 	    JPanel panel_1 = new JPanel();
 	    panel_1.setBackground(Color.WHITE);
 	    panel_1.setPreferredSize(new Dimension(380, 521));
@@ -67,15 +70,15 @@ public class CustMain extends JFrame {
   		
 	    		
 	    		
-//ÎÇ¥Ïö©
-	    		JButton comp = new JButton("ÎÇ¥ ÌöåÏÇ¨");
+//≥ªøÎ
+	    		JButton comp = new JButton("≥ª »∏ªÁ");
 	    		comp.setBounds(104, 118, 169, 60);
 	    		comp.setAlignmentX(Component.CENTER_ALIGNMENT);
 	    	
 	    		panel_1.add(comp);
 	    		// evl.setBounds(100, 250, 200, 40);
 	    
-	    		JButton evl = new JButton("ÌèâÍ∞Ä & ÌõÑÍ∏∞");
+	    		JButton evl = new JButton("∆Ú∞° & »ƒ±‚");
 	    		evl.setBounds(104, 264, 169, 60);
 	    		evl.setAlignmentX(Component.CENTER_ALIGNMENT);
 	    		panel_1.add(evl);
@@ -85,7 +88,7 @@ public class CustMain extends JFrame {
 	    		panel_1.add(lblNewLabel);
 	    		
 	    		
-//Î≤ÑÌäº Ïù¥Î≤§Ìä∏
+//πˆ∆∞ ¿Ã∫•∆Æ
 	    	
 	    		comp.addMouseListener(new MouseListener() {
 					@Override
@@ -112,9 +115,17 @@ public class CustMain extends JFrame {
 	    		evl.addMouseListener(new MouseListener() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						JFrame grade1=new Grade1();
-						grade1.setVisible(true);
-						setVisible(false);
+						JFrame grade1;
+						try {
+							grade1 = new Grade1();
+							grade1.setVisible(true);
+							setVisible(false);
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						
 						
 					}
 					
