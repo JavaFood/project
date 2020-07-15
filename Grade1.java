@@ -187,17 +187,20 @@ public class Grade1 extends JFrame {
 		btnNewButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		contentPane.add(btnNewButton);
 
+		
+//★★★★★★
 		JButton HomeBack = new JButton("New button");
 		HomeBack.setIcon(new ImageIcon("집1.PNG"));
 		HomeBack.setBounds(325, 13, 43, 44);
 		HomeBack.setPressedIcon(new ImageIcon("집2.PNG"));
 		contentPane.add(HomeBack);
 		HomeBack.addActionListener(new ActionListener() {
-
+//
 			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				new Home();
-				contentPane.setVisible(false);
+				setVisible(false);
 
 			}
 		});
@@ -207,7 +210,19 @@ public class Grade1 extends JFrame {
 		Back.setBounds(24, 22, 43, 27);
 		Back.setPressedIcon(new ImageIcon("화살표2.PNG"));
 		contentPane.add(Back);
+//		
+		Back.addActionListener(new ActionListener() {
+		//
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JFrame custmain=new CustMain();
+			custmain.setVisible(true);
+			setVisible(false);
 
+		}
+	});
+		
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 382, 65);
 		panel.setBackground(new Color(26, 188, 156));
