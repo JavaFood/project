@@ -131,7 +131,7 @@ public class TableTest extends JFrame {
 	        table.setPreferredSize(new Dimension(380,500));
 	        //3. 결과적으로는 JScrollPane를 추가합니다.
 	        JScrollPane sc = new JScrollPane(table);
-	       // sc.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+	        sc.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 	        sc.setPreferredSize(new Dimension(380,300));
 	        
 	        //4. 컴포넌트에  Table 추가
