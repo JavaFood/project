@@ -154,7 +154,7 @@ public class TableTest extends JFrame {
 	        
 	 contentPane.add(p);
 	        //setBounds(0, 0, 300, 150);
-	        setVisible(true);
+	 contentPane.setVisible(true);
 		
 	}
     
