@@ -27,10 +27,11 @@ class MyCom extends Frame implements MouseListener{
 		this.setBackground(Color.WHITE);
 		this.addWindowListener(new MyWinExit());
 
-		Color gren=new Color(26, 188, 156); //메인 컬러
+		
 
 //===================헤더==================
-
+		Color gren=new Color(26, 188, 156); //메인 컬러
+		
 		Panel MyComHeader=new Panel(); //헤더 패널 생성
 		MyComHeader.setPreferredSize(new Dimension(600,40));//헤더 사이즈 지정
 		MyComHeader.setBackground(gren);//헤더에 메인컬러 붙이기
@@ -64,7 +65,7 @@ class MyCom extends Frame implements MouseListener{
 		
 		
 
-//====================헤더================
+//====================================
 
 		Button select1=new Button("선택");
 		Button select2=new Button("선택");
@@ -72,8 +73,6 @@ class MyCom extends Frame implements MouseListener{
 		Button select4=new Button("선택");
 		Button select5=new Button("선택");//선택버튼
 
-//		------------------------------------
-	
 		
 //---------------회사리스트-----------
 		Panel List=new Panel();
@@ -90,7 +89,7 @@ class MyCom extends Frame implements MouseListener{
 		ticketCost.setFont(listT);
 		select.setFont(listT);
 		
-//		--------객체생성-----------		
+//--------객체생성-----------		
 		List.add(Number,"Center");
 		List.add(company,"Center");		
 		List.add(ticketCost,"Center");
@@ -111,7 +110,7 @@ class MyCom extends Frame implements MouseListener{
 		Label Num1=new Label("1");Label Num2=new Label("2"); Label Num3=new Label("3");
 		Label Num4=new Label("4");Label Num5=new Label("5");
 
-//		-----------List에 객체넣기-----------
+//-----------List에 객체넣기-----------
 		List.add(Num1,"Center");List.add(Company1,"Center");
 		List.add(Cost1,"Center"); List.add(select1,"Center");
 		
@@ -126,13 +125,13 @@ class MyCom extends Frame implements MouseListener{
 		
 		List.add(Num5,"Center");List.add(Company5,"Center");
 		List.add(Cost5,"Center"); List.add(select5,"Center");
-//		-------프레임에 List넣기------	
+//-------프레임에 List넣기------	
 
 		this.add(List);
 		
 		this.setVisible(true);
 		
-	
+//----버튼에 프레임전환이벤트넣기
 	select1.addMouseListener(this);
 	select2.addMouseListener(this);
 	select3.addMouseListener(this);
@@ -142,9 +141,10 @@ class MyCom extends Frame implements MouseListener{
 	//프레임 전환 클래스
 	 public void mouseClicked(MouseEvent e) {      
 	       // new Proj();
-	        JFrame tabletest=new TableTest();
-	        tabletest.setVisible(true);
-	        setVisible(false);
+	        JFrame tabletest=new TableTest(); //JFrame에서 Frame으로 이동
+		 				  //Frame 호출해서 이동
+	        tabletest.setVisible(true);	  //TableTest 열고
+	        setVisible(false);		  //MyCom 안 보이게
 	 }
  // 윈도우 종료 클래스 MyWinExit
 	public class MyWinExit extends WindowAdapter {
