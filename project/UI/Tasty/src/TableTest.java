@@ -21,7 +21,7 @@ public class TableTest extends JFrame {
 	
 	private JPanel contentPane;
 	private JTable table;
-
+	
     public TableTest(){
         		
 		setTitle("Tasty Co. 식단표");
@@ -42,8 +42,7 @@ public class TableTest extends JFrame {
 		HEAD.setBackground(new Color(26, 188, 156));
 	contentPane.add(HEAD);
 			//panel.setBounds(100,100,40,600);
-	    	//헤더 패널 Layout(null)주고 아래 JLabel에서 Bounds값 지정함
-		HEAD.setLayout(null);
+	HEAD.setLayout(null);
 
 	
 			//뒤로가기
@@ -52,11 +51,12 @@ public class TableTest extends JFrame {
 			back.setBounds(10,0,40,40);
 			back.addMouseListener(new MouseListener() {
 				public void mouseClicked(MouseEvent e) {
-					Frame mycom=new MyCom(); // Frame 호출. TableTest가 JFrame임
-					mycom.setVisible(true); //MyCom 보이게 Visible true값으로 줌
-			        setVisible(false); // TableTest보이지 않게 false	
+					Frame mycom=new MyCom();
+					mycom.setVisible(true);
+			        setVisible(false);
+					
+					
 				}
-			//비사용 
 				@Override
 				public void mouseReleased(MouseEvent e) {}
 				public void mousePressed(MouseEvent e) {}
@@ -68,9 +68,9 @@ public class TableTest extends JFrame {
 			JLabel Header = new JLabel("식단표");
 			Header.setAlignmentX(0.5f);
 			Header.setHorizontalAlignment(SwingConstants.CENTER);
-			Header.setFont(new Font("SANS_SERIF", Font.BOLD, 18)); //폰트
+			Header.setFont(new Font("SANS_SERIF", Font.BOLD, 18));
 			//Header.setBackground(Color.WHITE);
-			Header.setForeground(Color.WHITE); //글자색
+			Header.setForeground(Color.WHITE);
 			Header.setBounds(155,0,70,40);
 			HEAD.add(Header);
 		
@@ -82,9 +82,7 @@ public class TableTest extends JFrame {
 		ComNameBox.setBackground(Color.WHITE);
 		
 	
-			JLabel ComName=new JLabel("회사"/*선택한 회사이름*/);///★★★★★기능
-	    			//▲ Final static String CompantName="Tasty Co."; 지정할것
-	    			//TableTest Class 밖에 둬야함 
+			JLabel ComName=new JLabel("회사"/*선택한 회사이름*/);///★★★★★
 			Font NameFont=new Font(Font.SANS_SERIF,Font.BOLD,15);
 			ComNameBox.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 			ComName.setBackground(Color.WHITE);
@@ -102,8 +100,7 @@ public class TableTest extends JFrame {
 		Date.setBackground(Color.WHITE);
 		Date.setLayout(new BorderLayout(0, 0));
 		//
-		/* 삭제
-		JLabel DateWest = new JLabel("　　6월 4주　　");
+		/*JLabel DateWest = new JLabel("　　6월 4주　　");
 		Date.add(DateWest, BorderLayout.WEST);
 		DateWest.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		*/
@@ -112,14 +109,13 @@ public class TableTest extends JFrame {
 		Font CenterDFont=new Font(Font.SANS_SERIF,Font.BOLD,15);
 		Date.add(DateCenter, BorderLayout.CENTER);
 		DateCenter.setFont(CenterDFont);
-		/* 삭제
+		/*
 		JLabel DateEast = new JLabel("　　7월 2주　　");
 		Date.add(DateEast, BorderLayout.EAST);
 		DateEast.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		*/
 //------MealList
-		//String a 고정값 = 요일
-	    	//String b 바뀌는 값=식단
+		
 		 String []a = {"월","화","수","목","금"};
 	        String [][]b = {{"a1","a2","a3","a4","a5"},
 	                        {"b1","b2","b3","b4","b5"},
@@ -132,9 +128,10 @@ public class TableTest extends JFrame {
 	        //2. Model을 매개변수로 설정, new JTable(b,a)도 가능하지만 
 	        //삽입 삭제를 하기 위해 해당 방법을 사용합니다
 	        JTable table = new JTable(model); //
-	        table.setPreferredSize(new Dimension(380,270));
+	        table.setPreferredSize(new Dimension(380,500));
 	        //3. 결과적으로는 JScrollPane를 추가합니다.
 	        JScrollPane sc = new JScrollPane(table);
+	       // sc.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 	        sc.setPreferredSize(new Dimension(380,300));
 	        
 	        //4. 컴포넌트에  Table 추가
@@ -150,19 +147,18 @@ public class TableTest extends JFrame {
 	        table.updateUI();
 	        table.setGridColor(Color.WHITE);
 	        table.setGridColor(Color.WHITE);
-	        table.setEnabled(false); //JTable JVM에서 수정변경 못하도록 잠금. 
+	        table.setEnabled(false);
 	        //table.getTableHeader().setReorderingAllowed(false);
-	        table.getTableHeader().setEnabled(false); //JTable JVM에서 수정변경 못하도록 잠금(헤더)
+	        table.getTableHeader().setEnabled(false);
 	        	
 	        
-	 contentPane.add(p); //ContetnPane에 JPanel p 추가(JPanel에 테이블 붙어있음)
+	 contentPane.add(p);
 	        //setBounds(0, 0, 300, 150);
-	    
-	        setVisible(true); //페이지 보이도록 seetVisible
+	        setVisible(true);
 		
 	}
     
-    //메인
+    
     public static void main(String[] args) {
 		new TableTest();
 		EventQueue.invokeLater(new Runnable() {
