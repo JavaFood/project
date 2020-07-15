@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.Scanner;
 
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
+
 import java.awt.event.ActionListener;
 import java.awt.peer.ScrollPanePeer;
 import java.awt.event.ActionEvent;
@@ -20,7 +20,7 @@ public class Grade1 extends JFrame {
 	private JTextField TextInput;
 	private JTextField NameT;
 	private JTextField NumberT;
-	private JTextField CnameT;
+//	private JComboBox CnameT;
 
 	/**
 	 * Launch the application.
@@ -73,6 +73,8 @@ public class Grade1 extends JFrame {
 
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(153, 142, 111, 44);
+//		comboBox_1.setBounds(24, 142, 111, 44);
+		
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "\uBCF4\uAE30 \uC21C\uC11C",
 				"\uB192\uC740 \uD3C9\uC810 \uC21C", "\uB0AE\uC740 \uD3C9\uC810 \uC21C" }));
 		comboBox_1.setForeground(Color.BLACK);
@@ -87,6 +89,8 @@ public class Grade1 extends JFrame {
 		JTable table=new JTable(dtm);
 		table.setBounds(0,0,300,200);
 
+		table.setEnabled(false);
+		table.getTableHeader().setEnabled(false);
 		JScrollPane scp=new JScrollPane(table);
 		scp.setBounds(24, 198, 326, 155);
 		contentPane.add(scp);
@@ -119,11 +123,22 @@ public class Grade1 extends JFrame {
 //		});
 //		scrollPane.setColumnHeaderView(table_1);
 
-		CnameT = new JTextField();
-		CnameT.setText("\uD68C\uC0AC\uC774\uB984");
-		CnameT.setHorizontalAlignment(SwingConstants.CENTER);
+//		JComboBox comboBox_2 = new JComboBox();
+//		comboBox_2.setBounds(24, 142, 111, 44);
+//		comboBox_2.setModel(new DefaultComboBoxModel(new String[] { "\uBCF4\uAE30 \uC21C\uC11C",
+//				"\uB192\uC740 \uD3C9\uC810 \uC21C", "\uB0AE\uC740 \uD3C9\uC810 \uC21C" }));
+//		comboBox_2.setForeground(Color.BLACK);
+//		comboBox_2.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+//		comboBox_2.setBackground(Color.WHITE);
+//		contentPane.add(comboBox_2);
+
+		
+		JComboBox CnameT = new JComboBox();
+		CnameT.setBackground(Color.WHITE);
+		CnameT.setForeground(Color.BLACK);
 		CnameT.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
-		CnameT.setColumns(10);
+		CnameT.setModel(
+				new DefaultComboBoxModel(new String[] { "", "Tasty", "ÁÖ½Ä", "¹°»ê", "Costca", "Riotgames" }));
 		CnameT.setBounds(24, 365, 101, 46);
 		contentPane.add(CnameT);
 
@@ -156,8 +171,8 @@ public class Grade1 extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.addRow(
-						new Object[] { CnameT.getText(), TextInput.getText(), NameT.getText(), NumberT.getText() });
-			}// , CnameT.getText()
+						new Object[] { CnameT.getSelectedItem().toString(), TextInput.getText(), NameT.getText(), NumberT.getText() });
+			}
 		});
 		btnNewButton.setBounds(276, 157, 74, 29);
 		btnNewButton.setBackground(new Color(230, 230, 250));
