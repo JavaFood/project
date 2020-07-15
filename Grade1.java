@@ -1,30 +1,20 @@
 package UI;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import java.awt.Font;
+import java.awt.*;
+
+import javax.swing.*;
+
 import java.util.Scanner;
 
-import javax.swing.SwingConstants;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.awt.peer.ScrollPanePeer;
 import java.awt.event.ActionEvent;
-import javax.swing.ImageIcon;
 
 public class Grade1 extends JFrame {
 
-	private JPanel contentPane;
+	//private JPanel contentPane;
 	private JTable table;
 	private JTable table_1;
 	private JTextField TextInput;
@@ -35,7 +25,7 @@ public class Grade1 extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+   public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -54,65 +44,81 @@ public class Grade1 extends JFrame {
 	public Grade1() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 600);
-		contentPane = new JPanel();
+		Container contentPane =getContentPane();
 		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		//setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel Home = new JLabel("회사이름 / 평균 평점");
 		Home.setBounds(24, 77, 250, 65);
 		Home.setFont(new Font("맑은 고딕", Font.BOLD, 21));
 		contentPane.add(Home);
-		
+
 		JLabel lblNewLabel = new JLabel("평점 & 후기");
 		lblNewLabel.setBounds(125, 12, 139, 34);
 		contentPane.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 		lblNewLabel.setForeground(Color.WHITE);
-		
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(24, 142, 111, 44);
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setForeground(Color.BLACK);
 		comboBox.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"회사별보기", "Tasty", "주식", "물산", "Costca", "Riotgames"}));
+		comboBox.setModel(
+				new DefaultComboBoxModel(new String[] { "회사별보기", "Tasty", "주식", "물산", "Costca", "Riotgames" }));
 		contentPane.add(comboBox);
-		
+
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(153, 142, 111, 44);
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"\uBCF4\uAE30 \uC21C\uC11C", "\uB192\uC740 \uD3C9\uC810 \uC21C", "\uB0AE\uC740 \uD3C9\uC810 \uC21C"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "\uBCF4\uAE30 \uC21C\uC11C",
+				"\uB192\uC740 \uD3C9\uC810 \uC21C", "\uB0AE\uC740 \uD3C9\uC810 \uC21C" }));
 		comboBox_1.setForeground(Color.BLACK);
 		comboBox_1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		comboBox_1.setBackground(Color.WHITE);
 		contentPane.add(comboBox_1);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(24, 198, 326, 155);
-		contentPane.add(scrollPane);
+		//JPanel TablePanel=new JPanel();
+		//TablePanel.setBounds(24,198,326,155);
 		
-		
-		table_1 = new JTable();
-		table_1.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		table_1.setToolTipText("");
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"   회사이름", "     후기", "    작성자", "     평점"},
-			},
-			new String[] {
-				"Cname", "Text", "Name", "Number"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
-		scrollPane.setColumnHeaderView(table_1);
-		
+		DefaultTableModel dtm=new DefaultTableModel(new String[] {"회사이름","후기","작성자","평점"},0);
+		JTable table=new JTable(dtm);
+		table.setBounds(0,0,300,200);
+
+		JScrollPane scp=new JScrollPane(table);
+		scp.setBounds(24, 198, 326, 155);
+		contentPane.add(scp);
+//		
+//		table_1 = new JTable(dtm);
+//		table_1.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+//		JScrollPane scrollPane = new JScrollPane(table_1,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+////		JScrollPane scrollPane=new JScrollPane();
+//		scrollPane.setBounds(24, 198, 326, 155);
+//		scrollPane.setPreferredSize(new Dimension(300,155));
+//		scrollPane.setCorner(ScrollPaneConstants.UPPER_RIGHT_CORNER, null);
+//		contentPane.add(scrollPane);
+//		
+//		table_1.setToolTipText("");
+//		table_1.setPreferredSize(new Dimension(300,155));
+//		table_1.setModel(new DefaultTableModel(
+//			new Object[][] {
+//				{"   회사이름", "     후기", "    작성자", "     평점"},
+//			},
+//			new String[] {
+//				"Cname", "Text", "Name", "Number"
+//			}
+//		) {
+//			Class[] columnTypes = new Class[] {
+//				String.class, String.class, String.class, String.class
+//			};
+//			public Class getColumnClass(int columnIndex) {
+//				return columnTypes[columnIndex];
+//			}
+//		});
+//		scrollPane.setColumnHeaderView(table_1);
+
 		CnameT = new JTextField();
 		CnameT.setText("\uD68C\uC0AC\uC774\uB984");
 		CnameT.setHorizontalAlignment(SwingConstants.CENTER);
@@ -120,7 +126,7 @@ public class Grade1 extends JFrame {
 		CnameT.setColumns(10);
 		CnameT.setBounds(24, 365, 101, 46);
 		contentPane.add(CnameT);
-		
+
 		NameT = new JTextField();
 		NameT.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		NameT.setHorizontalAlignment(SwingConstants.CENTER);
@@ -128,7 +134,7 @@ public class Grade1 extends JFrame {
 		NameT.setBounds(249, 365, 101, 46);
 		contentPane.add(NameT);
 		NameT.setColumns(10);
-		
+
 		NumberT = new JTextField();
 		NumberT.setText("\uD3C9\uC810");
 		NumberT.setHorizontalAlignment(SwingConstants.CENTER);
@@ -136,7 +142,7 @@ public class Grade1 extends JFrame {
 		NumberT.setColumns(10);
 		NumberT.setBounds(134, 365, 101, 46);
 		contentPane.add(NumberT);
-		
+
 		TextInput = new JTextField();
 		TextInput.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		TextInput.setHorizontalAlignment(SwingConstants.CENTER);
@@ -144,50 +150,45 @@ public class Grade1 extends JFrame {
 		TextInput.setBounds(24, 421, 326, 101);
 		contentPane.add(TextInput);
 		TextInput.setColumns(10);
-		
+
 		JButton btnNewButton = new JButton("작성");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				DefaultTableModel model = (DefaultTableModel) table_1.getModel();
-				model.addRow(new Object [] {CnameT.getText(),TextInput.getText(),NameT.getText(),NumberT.getText()});
-			}//, CnameT.getText()
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.addRow(
+						new Object[] { CnameT.getText(), TextInput.getText(), NameT.getText(), NumberT.getText() });
+			}// , CnameT.getText()
 		});
 		btnNewButton.setBounds(276, 157, 74, 29);
 		btnNewButton.setBackground(new Color(230, 230, 250));
 		btnNewButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		contentPane.add(btnNewButton);
-		
+
 		JButton HomeBack = new JButton("New button");
 		HomeBack.setIcon(new ImageIcon("집1.PNG"));
 		HomeBack.setBounds(325, 13, 43, 44);
 		HomeBack.setPressedIcon(new ImageIcon("집2.PNG"));
 		contentPane.add(HomeBack);
 		HomeBack.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new Home();
 				contentPane.setVisible(false);
-				
+
 			}
 		});
-		
+
 		JButton Back = new JButton("New button");
 		Back.setIcon(new ImageIcon("화살표1.png"));
 		Back.setBounds(24, 22, 43, 27);
 		Back.setPressedIcon(new ImageIcon("화살표2.PNG"));
 		contentPane.add(Back);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 382, 65);
 		panel.setBackground(new Color(26, 188, 156));
 		contentPane.add(panel);
-		
-		
-		
-		
-		
-		
-		
+
 	}
 }
